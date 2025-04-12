@@ -31,7 +31,11 @@ button:hover {
     justify-content: flex-start;
 }
 
-input {
+.advance-label {
+    margin: 5px 0;
+}
+
+.advance-input {
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -43,7 +47,7 @@ input {
     width: 55%;
 }
 
-input:focus {
+.advance-input:focus {
     border-color: #4a90e2;
     box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
 }

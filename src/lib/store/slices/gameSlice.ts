@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+import { initialCols, initialRows } from '../../constants/constant';
+import { log } from '../../helpers/logger';
 import { initializeGrid } from '../../helpers/utils';
 import { GameState } from '../../types/gameState';
-import { initialCols, initialRows } from '../../constants/constant';
 import { fetchNextGeneration } from '../thunks/gameThunks';
 
 const initialState: GameState = {
     cols: initialCols,
+    error: '',
     generationsCount: 0,
     grid: initializeGrid(initialRows, initialCols),
     rows: initialRows
@@ -44,9 +46,20 @@ const gameSlice = createSlice({
      * @param builder - The builder object used to configure the reducer for the async action.
      */
     extraReducers: (builder) => {
-        builder.addCase(fetchNextGeneration.fulfilled, (_, action) => {
-            return action.payload;
-        });
+        builder
+            .addCase(fetchNextGeneration.fulfilled, (_, action) => {
+                return {
+                    ...action.payload,
+                    error: ''
+                };
+            })
+            .addCase(fetchNextGeneration.rejected, (state, action) => {
+                log.error('Failed to fetch next generation:', action.error);
+                return {
+                    ...state,
+                    error: action.error.message || 'Failed to fetch next generation'
+                };
+            });
     }
 });
 

@@ -87,11 +87,25 @@ const Board: React.FC = () => {
         <div className="board-container">
             <div className="controls-container">
                 {/* Display current population and generation count */}
-                <span className="controls-label">Population: {populationCount}</span>
-                <span className="controls-label">Generations: {generationsCount}</span>
+                <span
+                    aria-label={`Population: ${populationCount}`}
+                    className="controls-label">
+                    Population: {populationCount}
+                </span>
+                <span
+                    aria-label={`Generations: ${generationsCount}`}
+                    className="controls-label">
+                    Generations: {generationsCount}
+                </span>
 
                 {/* Control panel to interact with the board */}
-                <Controls advanceSteps={advanceStepsFunc} resetGame={resetGame} startGame={startGame} step={step} pauseGame={pauseGame} />
+                <Controls
+                    advanceSteps={advanceStepsFunc}
+                    pauseGame={pauseGame}
+                    resetGame={resetGame}
+                    startGame={startGame}
+                    step={step}
+                />
             </div>
 
             {/* Main grid rendering all cells */}
@@ -100,10 +114,10 @@ const Board: React.FC = () => {
                     <div key={rowIndex} className="row">
                         {row.map((cell, colIndex) => (
                             <Cell
-                                key={`${rowIndex}-${colIndex}`}
-                                isAlive={cell}
-                                toggleCell={() => toggleCell(rowIndex, colIndex)}
                                 ariaLabel={`Cell at row ${rowIndex + 1}, column ${colIndex + 1} is ${cell ? 'alive' : 'dead'}`}
+                                isAlive={cell}
+                                key={`${rowIndex}-${colIndex}`}
+                                toggleCell={() => toggleCell(rowIndex, colIndex)}
                             />
                         ))}
                     </div>
