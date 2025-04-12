@@ -8,7 +8,7 @@ import { ControlsProps } from './ControlsProps';
  * to control the Game of Life simulation (advance, start, pause,
  * advance (x), reset).
  */
-const Controls: React.FC<ControlsProps> = ({ advanceSteps, resetGame, startGame, step, pauseGame }) => {
+const Controls: React.FC<ControlsProps> = ({ advanceSteps, pauseGame, resetGame, startGame, step }) => {
     // Local state to keep track of how many steps (generations) to advance
     const [steps, setSteps] = useState<number>(1);
 
@@ -25,27 +25,28 @@ const Controls: React.FC<ControlsProps> = ({ advanceSteps, resetGame, startGame,
     return (
         <div className="controls">
             {/* Buttons for basic simulation control */}
-            <button onClick={step} aria-label="Advance one generation">Advance One Generation</button>
-            <button onClick={startGame} aria-label="Start game simulation">Start Game Simulation</button>
-            <button onClick={pauseGame} aria-label="Pause game simulation">Pause Game Simulation</button>
+            <button aria-label="Advance One Generation" onClick={step}>Advance One Generation</button>
+            <button aria-label="Start Game Simulation" onClick={startGame}>Start Game Simulation</button>
+            <button aria-label="Pause Game Simulation" onClick={pauseGame}>Pause Game Simulation</button>
 
             {/* Input and button to advance multiple generations */}
             <div className="advance-container">
-                <label htmlFor="steps-input">Advance generations:</label>
+                <label className="advance-label" htmlFor="steps-input">Advance generations:</label>
                 <input
                     aria-label="Number of generations to advance"
+                    className="advance-input"
                     id="steps-input"
                     min="1"
                     type="number"
                     value={steps}
                     onChange={onStepsChange}
                 />
-                <button onClick={advanceXSteps} aria-label={`Advance ${steps} generations`}>
+                <button aria-label={`Advance ${steps} Generations`} onClick={advanceXSteps}>
                     Advance {steps} Generations
                 </button>
             </div>
             {/* Reset the game to the initial state */}
-            <button onClick={resetGame} aria-label="Reset game simulation">Reset Game Simulation</button>
+            <button aria-label="Reset Game Simulation" onClick={resetGame}>Reset Game Simulation</button>
         </div>
     );
 };
