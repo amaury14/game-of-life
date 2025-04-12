@@ -1,0 +1,17 @@
+{
+  "projects": {
+    "default": "game-of-life-933a6"
+  },
+  "targets": {
+    "game-of-life-933a6": {
+      "hosting": {
+        "dev-game-of-life": [
+          "dev-game-of-life"
+        ],
+        "prod-game-of-life": [
+          "prod-game-of-life"
+        ]
+      }
+    }
+  }
+}
