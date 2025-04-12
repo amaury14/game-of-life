@@ -2,6 +2,10 @@ import { render, screen } from '@testing-library/react';
 
 import App from './App';
 
+/* eslint-disable react/display-name */
+jest.mock('../../components/organisms/Board/Board', () => () => <div data-testid="board-mock" />);
+/* eslint-enable react/display-name */
+
 describe('App component', () => {
     it('renders the header and footer', () => {
         render(<App />);
@@ -14,5 +18,7 @@ describe('App component', () => {
 
         expect(header).toBeInTheDocument();
         expect(footer).toBeInTheDocument();
+
+        expect(screen.getByTestId('board-mock')).toBeInTheDocument();
     });
 });

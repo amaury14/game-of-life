@@ -1,0 +1,18 @@
+.cell {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    flex: 0 0 auto;
+    height: 2vmin;
+    width: 2vmin;
+}
+
+.cell:hover {
+    background-color: #e0e0e0;
+    box-shadow: 0 0 3px 2px rgba(0, 0, 0, 0.1);
+}
+
+.alive {
+    background-color: #2ecc71;
+    box-shadow: inset 0 0 3px #27ae60;
+}
