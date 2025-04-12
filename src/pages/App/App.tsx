@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Board from '../../components/organisms/Board/Board';
 import './App.css';
 
 /**
@@ -14,7 +15,7 @@ const App: React.FC = () => {
 
             {/* Main game board component */}
             <main className="board-wrapper">
-                Board goes here
+                <Board />
             </main>
 
             {/* Footer with copyright */}

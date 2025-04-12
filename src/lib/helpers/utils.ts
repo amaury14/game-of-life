@@ -1,4 +1,5 @@
-import { directions } from '../../constants/constant';
+import { directions } from '../constants/constant';
+import { fetchNextGeneration } from '../store/thunks/gameThunks';
 
 /**
  * Initializes a grid with the specified number of rows and columns, 
@@ -46,36 +47,43 @@ export const countNeighbors = (row: number, col: number, grid: boolean[][]): num
 };
 
 /**
- * Generates the next state (generation) of the game grid based on the current grid.
+ * Counts the total number of live cells (cells with `true` value) in the grid.
  * 
- * The function applies the rules of Conway's Game of Life to the current grid and computes the next grid state. 
- * The rules are as follows:
- * - A live cell survives to the next generation if it has exactly 2 or 3 live neighbors.
- * - A dead cell becomes alive if it has exactly 3 live neighbors.
+ * This function iterates through the entire grid and sums the number of cells that are alive.
  * 
- * The function also increments the generation count.
+ * @param grid - The 2D grid (array of boolean values) representing the state of the cells.
  * 
- * @param grid - The current grid.
- * 
- * @returns A new grid 2D array representing the next generation.
+ * @returns The total number of live cells in the grid.
  */
-export function getNextGeneration(grid: boolean[][]): boolean[][] {
-    const rows = grid.length;
-    const cols = grid[0].length;
-    // Initializes a new grid with all dead cells
-    const newGrid = initializeGrid(rows, cols);
-
-    for (let row = 0; row < rows; row++) {
-        for (let col = 0; col < cols; col++) {
-            const neighbors = countNeighbors(row, col, grid);
-            // Apply Game of Life rules
-            if (grid[row][col]) {
-                newGrid[row][col] = neighbors === 2 || neighbors === 3;
-            } else {
-                newGrid[row][col] = neighbors === 3;
-            }
-        }
-    }
-
-    return newGrid;
+export const countPopulation = (grid: boolean[][]): number => {
+    return grid.flat().reduce((acc, cell) => acc + (cell ? 1 : 0), 0);
 }
+
+/**
+ * Advances the game states by executing the given number of steps with a specified delay between each step.
+ * 
+ * This function recursively dispatches an action (`fetchNextGeneration`) at each step, with a delay between steps.
+ * It uses a timeout to control the delay and ensures the steps are executed in order.
+ * The process stops once the desired number of steps (`steps`) is reached.
+ * 
+ * @param timeoutRef - A reference to store the current timeout, used to clear the timeout if necessary.
+ * @param steps - The total number of steps to advance the game.
+ * @param delay - The delay (in milliseconds) between each step.
+ * @param dispatch - The dispatch function to trigger the action (e.g., `fetchNextGeneration`).
+ * 
+ * @returns void
+ */
+export const advanceStepsLogic = (
+    timeoutRef: React.RefObject<NodeJS.Timeout | null>,
+    steps: number,
+    delay: number,
+    dispatch: (action: unknown) => void
+): void => {
+    const executeStep = (timeoutRef: React.RefObject<NodeJS.Timeout | null>, step: number) => {
+        if (step < steps) {
+            dispatch(fetchNextGeneration());
+            timeoutRef.current = setTimeout(() => executeStep(timeoutRef, step + 1), delay);
+        }
+    };
+    executeStep(timeoutRef, 0);
+};
