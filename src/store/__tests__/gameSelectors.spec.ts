@@ -1,6 +1,6 @@
 
+import { selectGenerationsCount, selectGrid, selectPopulationCount } from '../selectors/gameSelectors';
 import { RootState } from '../store';
-import { selectGenerationsCount, selectGrid, selectPopulationCount } from './gameSelectors';
 
 // Helper to create mock grid
 const createGrid = (rows: number, cols: number, aliveCells: number[][]): boolean[][] => {

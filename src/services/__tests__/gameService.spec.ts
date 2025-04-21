@@ -1,4 +1,4 @@
-import { getNextGeneration } from './gameService';
+import { getNextGeneration } from '../gameService';
 
 describe('getNextGeneration', () => {
     it('should return a new generation with correct updates', () => {

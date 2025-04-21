@@ -1,5 +1,5 @@
+import { fetchNextGeneration } from '../../store/thunks/gameThunks';
 import { directions } from '../constants/constant';
-import { fetchNextGeneration } from '../store/thunks/gameThunks';
 
 /**
  * Initializes a grid with the specified number of rows and columns, 

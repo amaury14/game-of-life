@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Board from './Board';
+
+import Board from '../Board/Board';
 
 // Basic grid mock (2x2)
 const mockGrid = [
@@ -28,15 +29,15 @@ jest.mock('react-redux', () => ({
 }));
 
 // Hooks Mock
-jest.mock('../../../lib/hooks/hooks', () => ({
+jest.mock('../../../store/hooks/hooks', () => ({
     useAppDispatch: () => mockAppDispatch
 }));
 
 // useAdvanceStates Mock
-jest.mock('../../../lib/hooks/useAdvanceSteps', () => () => mockAdvanceSteps);
+jest.mock('../../../store/hooks/useAdvanceSteps', () => () => mockAdvanceSteps);
 
 // Thunk Mock
-jest.mock('../../../lib/store/thunks/gameThunks', () => ({
+jest.mock('../../../store/thunks/gameThunks', () => ({
     fetchNextGeneration: () => ({ type: 'FETCH_NEXT_GEN' })
 }));
 
