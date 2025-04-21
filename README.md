@@ -1,5 +1,20 @@
 # Conway's Game of Life - Documentation
 
+## Table of Contents
+
+- [Problem Description](#problem-description)
+- [Steps to run the code locally](#steps-to-run-the-code-locally)
+- [Steps to build and run the docker image](#steps-to-build-and-run-the-docker-image)
+- [CI/CD with GitHub Actions and Firebase Hosting](#cicd-with-github-actions-and-firebase-hosting)
+- [Explanation of the Solution and Thought Process for **Game of Life React App**](#explanation-of-the-solution-and-thought-process-for-game-of-life-react-app)
+  - [Folder Structure](#folder-structure)
+  - [App Structure](#app-structure)
+  - [Core Concepts in the App](#core-concepts-in-the-app)
+  - [Approach to Testing](#approach-to-testing)
+  - [Thought Process for Building the Game of Life App](#thought-process-for-building-the-game-of-life-app)
+  - [Conclusion](#conclusion)
+- [Assumptions and Trade-offs](#assumptions-and-trade-offs)
+
 ## Problem Description
 
 Write a React front end application that implements simulating Conway’s Game of Life [Conway's Game
@@ -130,7 +145,80 @@ The **Game of Life** is a cellular automaton devised by mathematician John Conwa
 
 ---
 
+### **Folder Structure**
+
+```
+├── src/                         # Contains the application's source code.
+│   ├── components/              # Contains UI components.
+│   │   ├── __tests__/           # Unit and integration tests for components.
+│   │   │   └── ...
+│   │   ├── atoms/               # Basic, indivisible UI components.
+│   │   │   ├── __tests__/       # Tests specific to atomic components.
+│   │   │   │   └── ...
+│   │   │   └── Cell/            # Directory for the Cell atom component.
+│   │   │       ├── Cell.css
+│   │   │       ├── Cell.tsx
+│   │   │       └── CellProps.ts
+│   │   │   └── Controls/        # Directory for the Controls atom component.
+│   │   │       ├── Controls.css
+│   │   │       ├── Controls.tsx
+│   │   │       └── ControlsProps.ts
+│   │   └── organisms/           # More complex components composed of atoms and molecules (e.g., forms, lists).
+│   │       ├── __tests__/       # Tests specific to organism components.
+│   │       │   └── ...
+│   │       └── Board/           # Directory for the Board organism component.
+│   │           ├── Board.tsx
+│   │           └── ...          # Other files related to the Board component.
+│
+│   ├── lib/                     # Contains custom libraries or utilities.
+│   │   ├── __tests__/           # Tests for the utility functions and constants.
+│   │   │   └── ...
+│   │   ├── constants/           # Defines constant values used in the application (e.g., URLs, enums).
+│   │   │   └── ...
+│   │   ├── helpers/             # Utility functions not directly related to application logic.
+│   │   │   └── ...
+│   │   ├── types/               # Defines interfaces and data types used throughout the application.
+│   │   │   └── ...
+│   │   └── ...
+│
+│   ├── pages/                   # Contains top-level components representing different views or "pages" of the application.
+│   │   ├── __tests__/           # Tests for page-level components.
+│   │   │   └── ...
+│   │   └── App/                 # A specific directory for the main App component or related page-level logic.
+│   │       └── ...
+│
+│   ├── services/                # Contains logic for interacting with external APIs or backend services.
+│   │   ├── __tests__/           # Tests for service functions.
+│   │   │   └── gameService.spec.ts  # Tests for the gameService.ts file.
+│   │   └── gameService.ts       # Service file likely handling API calls or business logic related to the game.
+│
+│   ├── store/                   # Contains the configuration and logic for global state management.
+│   │   ├── __tests__/           # Tests for the store-related logic.
+│   │   │   └── ...
+│   │   ├── hooks/               # Custom hooks related to the global state.
+│   │   │   └── ...
+│   │   ├── selectors/           # Functions to select or derive specific data from the global state.
+│   │   │   └── ...
+│   │   ├── slices/              # Defines state portions and their logic (reducers and actions).
+│   │   │   └── ...
+│   │   ├── thunks/              # Defines asynchronous actions (e.g., API calls).
+│   │   │   └── ...
+│   │   └── store.ts             # Main configuration file for the store (e.g., Redux store creation).
+│
+│   ├── styles/                  # Contains global style files or application themes.
+│   │   └── ...
+│   ├── index.tsx                # Main entry point of the React application.
+│   ├── logo.svg                 # SVG file for the React logo.
+│   ├── react-app-env.d.ts       # TypeScript declaration file for Create React App environment variables.
+│   ├── reportWebVitals.ts       # File for measuring and reporting performance metrics.
+│   └── setupTests.ts            # File for setting up the testing environment.
+│
+├── ...                          # Other configuration files (e.g., package.json, tsconfig.json).
+```
+
 ### **App Structure**
+
+![Imagen](/public/diagram.png)
 
 1. **Components Breakdown**:
    - **App**: The root component that sets up the main structure.
