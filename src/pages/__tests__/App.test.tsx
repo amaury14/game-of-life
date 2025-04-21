@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import App from './App';
+import App from '../App/App';
 
 /* eslint-disable react/display-name */
 jest.mock('../../components/organisms/Board/Board', () => () => <div data-testid="board-mock" />);

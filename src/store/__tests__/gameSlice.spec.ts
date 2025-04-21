@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { initialCols, initialRows } from '../../constants/constant';
-import { initializeGrid } from '../../helpers/utils';
+import { initialCols, initialRows } from '../../lib/constants/constant';
+import { initializeGrid } from '../../lib/helpers/utils';
 import { fetchNextGeneration } from '../thunks/gameThunks';
 import { RootState } from '../store';
-import gameReducer, { toggleCellAction, setBoardDimensionsAction, resetAction } from './gameSlice';
+import gameReducer, { toggleCellAction, setBoardDimensionsAction, resetAction } from '../slices/gameSlice';
 
-jest.mock('../../helpers/logger', () => ({
+jest.mock('../../lib/helpers/logger', () => ({
     log: {
         info: jest.fn(),
         warn: jest.fn(),

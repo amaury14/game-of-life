@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-import { getNextGeneration } from '../../../services/gameService';
+import { getNextGeneration } from '../../services/gameService';
 import { RootState } from '../store';
 
 /**

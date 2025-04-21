@@ -1,4 +1,4 @@
-import { advanceStepsLogic, countNeighbors, countPopulation, initializeGrid, isInBounds } from './utils';
+import { advanceStepsLogic, countNeighbors, countPopulation, initializeGrid, isInBounds } from '../helpers/utils';
 
 jest.useFakeTimers(); // Mock timers
 

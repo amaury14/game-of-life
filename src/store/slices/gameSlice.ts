@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { initialCols, initialRows } from '../../constants/constant';
-import { log } from '../../helpers/logger';
-import { initializeGrid } from '../../helpers/utils';
-import { GameState } from '../../types/gameState';
+import { initialCols, initialRows } from '../../lib/constants/constant';
+import { log } from '../../lib/helpers/logger';
+import { initializeGrid } from '../../lib/helpers/utils';
+import { GameState } from '../../lib/types/gameState';
 import { fetchNextGeneration } from '../thunks/gameThunks';
 
 const initialState: GameState = {
