@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect';
 
-import { countPopulation } from '../../helpers/utils';
+import { countPopulation } from '../../lib/helpers/utils';
 import { RootState } from '../store';
 
 /**

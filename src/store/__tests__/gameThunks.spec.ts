@@ -1,10 +1,11 @@
-import { getNextGeneration } from '../../../services/gameService';
 import { configureStore } from '@reduxjs/toolkit';
+
+import { getNextGeneration } from '../../services/gameService';
 import { RootState } from '../store';
-import { fetchNextGeneration } from './gameThunks';
+import { fetchNextGeneration } from '../thunks/gameThunks';
 
 // Mock the API call function
-jest.mock('../../../services/gameService', () => ({
+jest.mock('../../services/gameService', () => ({
     getNextGeneration: jest.fn()
 }));
 

@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Controls from './Controls';
+
+import Controls from '../Controls/Controls';
 
 describe('Controls component', () => {
     const mockStep = jest.fn();

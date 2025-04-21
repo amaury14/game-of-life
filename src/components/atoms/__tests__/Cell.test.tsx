@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import Cell from './Cell';
+
+import Cell from '../Cell/Cell';
 
 describe('Cell component', () => {
     const mockToggleCell = jest.fn();

@@ -1,6 +1,6 @@
 import { useCallback, useRef } from 'react';
 
-import { advanceStepsLogic } from '../helpers/utils';
+import { advanceStepsLogic } from '../../lib/helpers/utils';
 import { useAppDispatch } from './hooks';
 
 /**

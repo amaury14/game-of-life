@@ -2,11 +2,11 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { delayBetweenSteps, initialCols, initialRows } from '../../../lib/constants/constant';
-import useAdvanceSteps from '../../../lib/hooks/useAdvanceSteps';
-import { useAppDispatch } from '../../../lib/hooks/hooks';
-import { selectGenerationsCount, selectGrid, selectPopulationCount } from '../../../lib/store/selectors/gameSelectors';
-import { toggleCellAction, setBoardDimensionsAction, resetAction } from '../../../lib/store/slices/gameSlice';
-import { fetchNextGeneration } from '../../../lib/store/thunks/gameThunks';
+import useAdvanceSteps from '../../../store/hooks/useAdvanceSteps';
+import { useAppDispatch } from '../../../store/hooks/hooks';
+import { selectGenerationsCount, selectGrid, selectPopulationCount } from '../../../store/selectors/gameSelectors';
+import { toggleCellAction, setBoardDimensionsAction, resetAction } from '../../../store/slices/gameSlice';
+import { fetchNextGeneration } from '../../../store/thunks/gameThunks';
 import Cell from '../../atoms/Cell/Cell';
 import Controls from '../../atoms/Controls/Controls';
 import './Board.css';
