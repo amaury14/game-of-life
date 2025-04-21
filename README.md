@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/github/amaury14/game-of-life/graph/badge.svg?token=85SQ8LJZHF)](https://codecov.io/github/amaury14/game-of-life)
+
 # Conway's Game of Life - Documentation
 
 ## Table of Contents
